@@ -1,0 +1,7 @@
+<%= link_to 'Add a Mooring', new_mooring_path %>
+
+<ul class="list-group">
+  <% @moorings.each do |mooring| %>
+    <li class="list-group-item"><%= link_to mooring.harbor, mooring_path(mooring) %></li>
+  <% end %>
+</ul>
