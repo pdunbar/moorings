@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
-        <h2>Sign up</h2>
+        <h2>Sign Up</h2>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= f.error_notification %>
           <%= devise_error_messages! %>
@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.email_field :email, class: "form-control", placeholder: "Enter Email", required: true, autofocus: true %>
+                <%= f.email_field :email, class: "form-control", id: "email", placeholder: "Enter Email", autofocus: true %>
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.password_field :password, class: "form-control", placeholder: "Enter Password", required: true %>
+                <%= f.password_field :password, class: "form-control", id: "password", placeholder: "Enter Password" %>
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group form-inputs">
-                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password", required: true %>
+                <%= f.password_field :password_confirmation, class: "form-control", id: "password_confirmation", placeholder: "Confirm Password" %>
               </div>
             </div>
           </div>
