@@ -10,8 +10,10 @@ class HarborsController < ApplicationController
   def create
     @harbor = Harbor.new(harbor_params)
     if @harbor.save
+      flash[:notice] = 'Success'
       redirect_to harbor_path(@harbor)
     else
+      flash[:notice] = 'Error'
       render :new
     end
   end

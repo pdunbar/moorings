@@ -1,9 +1,22 @@
-<h1>Harbor Listings</h1>
+<h2>Harbor Listings</h2>
 
-<%= link_to 'Add a Harbor', new_harbor_path %>
+<div class="harbortable">
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <th>Harbor Name</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @harbors.each do |harbor| %>
+        <tr>
+          <td><%= link_to harbor.name, harbor_path(harbor) %></td>
+          <td><%= harbor.state %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<ul>
-  <% @harbors.each do |harbor| %>
-    <li><%= link_to harbor.name, harbor_path(harbor) %></li>
-  <% end %>
-</ul>
+<%= button_to('Add a Harbor', new_harbor_path, :method => 'get', :class => 'btn btn-info')  %>

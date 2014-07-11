@@ -1,7 +1,26 @@
-<%= link_to 'Add a Mooring', new_mooring_path %>
+<h2>Browse Moorings</h2>
 
-<ul class="list-group">
-  <% @moorings.each do |mooring| %>
-    <li class="list-group-item"><%= link_to mooring.harbor, mooring_path(mooring) %></li>
-  <% end %>
-</ul>
+<div class="mooringtable">
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <th>Harbor</th>
+        <th>State</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @moorings.each do |mooring| %>
+        <tr>
+          <td><%= link_to mooring.harbor.name, mooring_path(mooring) %></td>
+          <td><%= mooring.harbor.state %></td>
+          <td><%= mooring.latitude %></td>
+          <td><%= mooring.longitude %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= button_to('Add a Mooring', new_mooring_path, :method => 'get', :class => 'btn btn-info')  %>
