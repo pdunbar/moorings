@@ -1,0 +1,9 @@
+<h1>Harbor Listings</h1>
+
+<%= link_to 'Add a Harbor', new_harbor_path %>
+
+<ul>
+  <% @harbors.each do |harbor| %>
+    <li><%= link_to harbor.name, harbor_path(harbor) %></li>
+  <% end %>
+</ul>

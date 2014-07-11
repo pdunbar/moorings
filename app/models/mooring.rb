@@ -5,5 +5,8 @@ class Mooring < ActiveRecord::Base
 
   validates :harbor, presence: true
   validates :user, presence: true
-  validates :price, presnce: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+  validates :state, presence: true
+  validates :price, presence: true
 end
