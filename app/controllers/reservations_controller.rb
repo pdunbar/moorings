@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
     @reservation.mooring = @mooring
     if @reservation.save
       flash[:notice] = 'Success'
-      redirect_to moorings_path
+      redirect_to reservations_path
     else
       flash.now[:notice]
       render :new
@@ -28,14 +28,6 @@ class ReservationsController < ApplicationController
   end
 
   private
-
-  def has_reservation?
-    if current_user.reservations == nil
-      false
-    else
-      true
-    end
-  end
 
   def reservation_params
     params.require(:reservation).permit(:check_in, :check_out, :boat_id)

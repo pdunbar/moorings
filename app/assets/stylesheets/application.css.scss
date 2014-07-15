@@ -15,8 +15,6 @@ body { padding-top: 60px;}
 // Whatever application styles you have go last
 @import "styles";
 
-/*
- *= require bootstrap-datepicker3
-*/
 
+@import "mapbox";
 @import "bootstrap-datepicker3";

@@ -8,6 +8,7 @@
         <th>State</th>
         <th>Latitude</th>
         <th>Longitude</th>
+        <th>Price</th>
         <th></th>
       </tr>
     </thead>
@@ -18,11 +19,18 @@
           <td><%= mooring.harbor.state %></td>
           <td><%= mooring.latitude %></td>
           <td><%= mooring.longitude %></td>
+          <td>$<%= mooring.price %></td>
           <td><%= button_to('Reserve Me', new_mooring_reservation_path(mooring), :method => 'get', :class => 'btn btn-primary btn-xs') %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 <%= button_to('Add a Mooring', new_mooring_path, :method => 'get', :class => 'btn btn-info')  %>
+
+<div id='map'></div>
+
+<script>
+  var map = L.mapbox.map('map', 'pdunbar.ipfgki5i')
+    .setView([44.425, -69.007], 13);
+</script>
