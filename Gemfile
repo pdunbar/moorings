@@ -55,4 +55,6 @@ gem 'autoprefixer-rails'
 gem 'rails_12factor'
 gem 'simple_form'
 gem 'bootswatch-rails'
-
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+    :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'stamp'

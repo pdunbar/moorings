@@ -1,0 +1,4 @@
+<h2>Your reservation for <%= @reservation.mooring.harbor.name %></h2>
+<h4>is confirmed to arrive <%= @reservation.check_in.stamp("Sunday, May 1, 2000") %> and departing on <%= @reservation.check_out.stamp("Sunday, May 1, 2000") %></h4></br>
+
+<h4>Your mooring is located at: <%= @reservation.mooring.latitude %>, <%= @reservation.mooring.longitude %></h4>

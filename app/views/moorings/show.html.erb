@@ -1,7 +1,8 @@
 <h3><%= @mooring.harbor.name %>, <%= @mooring.harbor.state %></h3>
 <h4>Rate: $<%= @mooring.price %>.00</h4>
-<h4>Location: <%= @mooring.latitude %>, <%= @mooring.longitude %></h4>
-<%= button_to('Reserve it Now!', new_reservation_path, :method => 'get', :class => 'btn btn-info')  %>
+<h5>Location: <%= @mooring.latitude %>, <%= @mooring.longitude %></h5>
+<h5>Owner Email: <%= @mooring.user.email %></h5>
+<%= button_to('Reserve it Now!', new_mooring_reservation_path(@mooring), :method => 'get', :class => 'btn btn-info')  %>
 
 
 

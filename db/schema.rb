@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711200950) do
+ActiveRecord::Schema.define(version: 20140714151024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "boats", force: true do |t|
-    t.integer  "user",       null: false
-    t.string   "type",       null: false
+    t.integer  "user_id",    null: false
+    t.string   "type_of",    null: false
     t.integer  "length",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20140711200950) do
   end
 
   create_table "reservations", force: true do |t|
-    t.integer  "boat",       null: false
-    t.integer  "mooring",    null: false
+    t.integer  "boat_id",    null: false
+    t.integer  "mooring_id", null: false
     t.date     "check_in",   null: false
     t.date     "check_out",  null: false
     t.datetime "created_at"

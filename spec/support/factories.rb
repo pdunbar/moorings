@@ -4,7 +4,17 @@ FactoryGirl.define do
     password 'password'
   end
 
-  factory :mooring do
+  factory :harbor do
+    name 'Belfast'
+    state 'ME'
+    description 'this is a description'
+  end
 
+  factory :mooring do
+    latitude 44.424536
+    longitude -68.989595
+
+    user
+    harbor
   end
 end

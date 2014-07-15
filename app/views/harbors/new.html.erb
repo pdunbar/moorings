@@ -1,46 +1,46 @@
-  <div class="container">
-    <h2>Add a Harbor</h2>
-    <div class="row">
-      <div class="col-xs-8">
-        <%= form_for @harbor do |f| %>
-        <% if @harbor.errors.any? %>
-          <p> There were errors with your submission:</p>
-          <ul>
-          <% @harbor.errors.full_messages.each do |msg|%>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-          <% end %>
+<div class="container">
+  <h2>Add a Harbor</h2>
+  <div class="row">
+    <div class="col-xs-8">
+      <%= form_for @harbor do |f| %>
+      <% if @harbor.errors.any? %>
+        <p> There were errors with your submission:</p>
+        <ul>
+        <% @harbor.errors.full_messages.each do |msg|%>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+        <% end %>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <%= f.text_field :name, class: "form-control", id: "harborname", placeholder: "Enter Harbor Name", autofocus: true %>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <%= f.select :state, us_states, {selected: "ME"}, {class: "form-control", id: "harborstate"} %>
-              </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.text_field :name, class: "form-control", id: "harborname", placeholder: "Enter Harbor Name", autofocus: true %>
             </div>
           </div>
-
-          <div class="row">
-            <div class="col-md-8">
-              <div class="form-group">
-                <%= f.text_area :description, class: "form-control", id: "harbordescription", placeholder: "Enter Description" %>
-              </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.select :state, us_states, {selected: "ME"}, {class: "form-control", id: "harborstate"} %>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.submit "Add Harbor", class: "btn btn-default", id: "addharbor" %>
-            </div>
-
           </div>
         </div>
-      <% end %>
 
-    </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <%= f.text_area :description, class: "form-control", id: "harbordescription", placeholder: "Enter Description" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.submit "Add Harbor", class: "btn btn-default", id: "addharbor" %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
   </div>
+</div>

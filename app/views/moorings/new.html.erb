@@ -1,59 +1,64 @@
   <div class="container">
     <h2>Add a Mooring</h2>
-    <div class="row">
-      <div class="col-xs-6">
-        <%= form_for @mooring do |f| %>
-        <% if @mooring.errors.any? %>
-          <p> There were errors with your submission:</p>
-          <ul>
-          <% @mooring.errors.full_messages.each do |msg|%>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-          <% end %>
+    <% if !signed_in? %>
+      <h3>You need to sign in before you can do that.</h3>
+      <%= button_to('Sign Up', new_user_registration_path, :method => 'get', :class => 'btn btn-info')  %>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-6">
+          <%= form_for @mooring do |f| %>
+          <% if @mooring.errors.any? %>
+            <p> There were errors with your submission:</p>
+            <ul>
+            <% @mooring.errors.full_messages.each do |msg|%>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+            <% end %>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <%= f.collection_select(:harbor_id, Harbor.all, :id, :name, {},html_options = {class: "form-control"}) %>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.collection_select(:harbor_id, Harbor.all, :id, :name, {},html_options = {class: "form-control"}) %>
+                </div>
               </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <%= f.select :state, us_states, {selected: "ME"}, {class: "form-control", id: "mooringstate"} %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= f.text_field :price, class: "form-control", id: "mooringprice", placeholder: "Daily Price" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= f.text_field :latitude, class: "form-control", id: "mooringLat", placeholder: "Latitude" %>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <%= f.text_field :longitude, class: "form-control", id: "mooringLong", placeholder: "Longitude" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                <%= f.submit "Add Mooring", class: "btn btn-default", id: "addmooring" %>
+              </div>
+
             </div>
           </div>
+        <% end %>
 
-          <div class="row">
-            <div class="col-md-2">
-              <div class="form-group">
-                <%= f.select :state, us_states, {selected: "ME"}, {class: "form-control", id: "mooringstate"} %>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <%= f.text_field :price, class: "form-control", id: "mooringprice", placeholder: "Daily Price" %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <%= f.text_field :latitude, class: "form-control", id: "mooringLat", placeholder: "Latitude" %>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <%= f.text_field :longitude, class: "form-control", id: "mooringLong", placeholder: "Longitude" %>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-2">
-              <%= f.submit "Add Harbor", class: "btn btn-default", id: "addharbor" %>
-            </div>
-
-          </div>
-        </div>
-      <% end %>
-
-    </div>
+      </div>
+    <% end %>
   </div>

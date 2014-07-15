@@ -1,0 +1,44 @@
+<h2>Add your boat</h2>
+<% if !signed_in? %>
+  <h3>You need to sign in before you can do that.</h3>
+  <%= button_to('Sign Up', new_user_registration_path, :method => 'get', :class => 'btn btn-info')  %>
+<% else %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= form_for @boat do |f| %>
+      <% if @boat.errors.any? %>
+        <p> There were errors with your submission:</p>
+        <ul>
+        <% @boat.errors.full_messages.each do |msg|%>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.text_field :type_of, class: "form-control", id: "boattype", placeholder: "Boat Type" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.text_field :length, class: "form-control", id: "boatlength", placeholder: "Boat Length" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.submit "Add Boat", class: "btn btn-default", id: "addboat" %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>

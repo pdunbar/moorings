@@ -3,7 +3,6 @@
 <head>
   <title>MoorME</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,7 +14,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">MoorMe</a>
+        <a class="navbar-brand" href="/">MoorME</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
@@ -37,6 +36,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <%- if user_signed_in? -%>
+            <li><%= link_to 'Add a Boat', new_boat_path %>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
             <li><%= link_to 'Sign Up', new_user_registration_path %></li>
@@ -51,5 +51,6 @@
     <%= alert %>
     <%= yield %>
   </div>
+  <%= javascript_include_tag 'application' %>
 </body>
 </html>

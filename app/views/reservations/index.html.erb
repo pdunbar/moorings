@@ -1,0 +1,36 @@
+<% if current_user.reservations.empty? %>
+  <h3>You don't have any reservations.</h3>
+  <p>Browse the mooring listings and make a reservation!</p>
+  <%= button_to('Browse Moorings', moorings_path, :method => 'get', :class => 'btn btn-info')  %>
+<% else %>
+  <h3>Check out your reservations</h3>
+
+  <div class="reservationstable">
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>Harbor</th>
+          <th>State</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reservations.each do |reservation| %>
+          <tr>
+            <td><%= link_to reservation.mooring.harbor.name, reservation_path(reservation) %></td>
+            <td><%= reservation.mooring.harbor.state %></td>
+            <td><%= reservation.mooring.latitude %></td>
+            <td><%= reservation.mooring.longitude %></td>
+            <td><%= reservation.check_in.stamp("12/31/99")  %></td>
+            <td><%= reservation.check_out.stamp("12/31/99")  %></td>
+            <td><%= button_to('Details', reservation_path(reservation), :method => 'get', :class => 'btn btn-primary btn-xs') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

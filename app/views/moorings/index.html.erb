@@ -8,6 +8,7 @@
         <th>State</th>
         <th>Latitude</th>
         <th>Longitude</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
           <td><%= mooring.harbor.state %></td>
           <td><%= mooring.latitude %></td>
           <td><%= mooring.longitude %></td>
+          <td><%= button_to('Reserve Me', new_mooring_reservation_path(mooring), :method => 'get', :class => 'btn btn-primary btn-xs') %></td>
         </tr>
       <% end %>
     </tbody>

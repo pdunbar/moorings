@@ -1,4 +1,6 @@
 class MooringsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @moorings = Mooring.all
   end
