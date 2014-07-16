@@ -4,5 +4,11 @@
 <h5>Owner Email: <%= @mooring.user.email %></h5>
 <%= button_to('Reserve it Now!', new_mooring_reservation_path(@mooring), :method => 'get', :class => 'btn btn-info')  %>
 
+<div
+  id='map'
+  route=<%= @route %>
+  data-latitude=<%= @mooring.latitude %>
+  data-longitude=<%= @mooring.longitude %>>
+  </div>
 
 

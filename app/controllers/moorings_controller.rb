@@ -3,6 +3,29 @@ class MooringsController < ApplicationController
 
   def index
     @moorings = Mooring.all
+    @geojson = Array.new
+
+    @moorings.each do |mooring|
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [mooring.longitude, mooring.latitude]
+        },
+        properties: {
+          name: mooring.harbor.name,
+          location: 'Long: mooring.longitude, Lat: #{mooring.latitude}',
+          :'marker-color' => '#00607d',
+          :'marker-symbol' => 'circle',
+          :'marker-size' => 'medium'
+        }
+      }
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+    end
   end
 
   def new
@@ -23,6 +46,34 @@ class MooringsController < ApplicationController
 
   def show
     @mooring = Mooring.find(params[:id])
+    @route = '/moorings/#{params[:id]}.json'
+  end
+
+  def mooring_json
+    @moorings = Mooring.all
+    @geojson = Array.new
+
+    @moorings.each do |mooring|
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [mooring.longitude, mooring.latitude]
+        },
+        properties: {
+          name: mooring.harbor,
+          location: 'Long: #{mooring.longitude}, Lat: #{mooring.latitude}',
+          :'marker-color' => '#00607d',
+          :'marker-symbol' => 'circle',
+          :'marker-size' => 'medium'
+        }
+      }
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+    end
   end
 
   private
