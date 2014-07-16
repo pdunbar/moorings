@@ -1,14 +1,10 @@
-$(document).ready(function(){
+function mooringMap(options) {
+  var centerLocation = options.centerLocation;
+  var zoomLevel = options.zoomLevel || 14;
   var map = L.mapbox.map('map', 'pdunbar.ipfgki5i')
-    .setView([44.426130, -68.995431], 14);
-    $.ajax({
-      dataType: 'text',
-      url: '/moorings.json',
-      success: function(data) {
-        var geojson;
-        geojson = $.parseJSON(data);
-        console.log(geojson);
-        return map.featureLayer.setGeoJSON(geojson);
-    }
-  });
-});
+    .setView([centerLocation.latitude, centerLocation.longitude], zoomLevel);
+  var locationParams = '?latitude=' + centerLocation.latitude + '&longitude=' + centerLocation.longitude;
+  var featureLayer = L.mapbox.featureLayer()
+    .loadURL('/moorings.json' + locationParams)
+    .addTo(map)
+};

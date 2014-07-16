@@ -28,4 +28,19 @@
 </div>
 <%= button_to('Add a Mooring', new_mooring_path, :method => 'get', :class => 'btn btn-info')  %>
 
-<div id='map'></div>
+<div id='map' class='map-large'></div>
+
+<%= content_for :extra_footer do %>
+  <script type="text/javascript">
+    $(function() {
+      var centerLocation = {
+        longitude: <%= @moorings.first.longitude %>,
+        latitude: <%= @moorings.first.latitude %>
+      };
+
+      mooringMap({
+        centerLocation: centerLocation
+      });
+    });
+  </script>
+<% end %>
