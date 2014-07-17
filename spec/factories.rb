@@ -19,4 +19,19 @@ FactoryGirl.define do
     user
     harbor
   end
+
+  factory :boat do
+    type_of 'Sailboat'
+    length 50
+
+    user
+  end
+
+  factory :reservation do
+    check_in '2014/5/1'
+    check_out '2014/5/31'
+
+    boat
+    mooring
+  end
 end

@@ -15,7 +15,13 @@ class Mooring < ActiveRecord::Base
   end
 
 
-  def to_json(date = Date.today)
+  def to_json(start_date = Date.today, end_date = Date.tomorrow)
+    if is_reserved?(start_date, end_date)
+      color = '#FF0000'
+    else
+      color = '#0000FF'
+    end
+
     {
       type: 'Feature',
       geometry: {
@@ -25,7 +31,7 @@ class Mooring < ActiveRecord::Base
       properties: {
         name: harbor.name,
         location: 'Long: mooring.longitude, Lat: #{mooring.latitude}',
-        :'marker-color' => '#FF0000',
+        :'marker-color' => color,
         :'marker-symbol' => 'harbor',
         :'marker-size' => 'medium',
       }
