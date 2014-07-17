@@ -13,6 +13,8 @@ FactoryGirl.define do
   factory :mooring do
     latitude 44.424536
     longitude -68.989595
+    price 50
+    state 'ME'
 
     user
     harbor

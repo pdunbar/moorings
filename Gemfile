@@ -47,12 +47,13 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'launchy'
   gem 'dotenv-rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'simple_form'
 gem 'bootswatch-rails'
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',

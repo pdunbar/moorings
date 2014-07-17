@@ -14,8 +14,11 @@
         latitude: <%= @mooring.latitude %>
       };
 
+      var zoomLevel = 16;
+
       mooringMap({
-        centerLocation: centerLocation
+        centerLocation: centerLocation,
+        zoomLevel: zoomLevel
       });
     });
   </script>

@@ -3,8 +3,10 @@ class MooringsController < ApplicationController
 
   def index
     @moorings = Mooring.all
-    @geojson = Array.new
-    moorings_json
+    respond_to do |format|
+      format.html
+      format.json { render json: @moorings.map{|e| e.to_json}}
+    end
   end
 
   def new
@@ -25,32 +27,30 @@ class MooringsController < ApplicationController
 
   def show
     @mooring = Mooring.find(params[:id])
-    moorings_json
+    moorings_json(moorings_grey)
   end
 
 
+  def moorings_grey
+    '#550022'
+  end
 
-  def moorings_json
+
+  def moorings_vacant_today(date = Date.today)
+    if mooring.reservations.find_by("check_in < ?  AND check_out > ?", date, date)
+      '#FF0000'
+    else
+      '#2bC12B'
+    end
+  end
+
+
+  def moorings_json(color_picker)
     @moorings = Mooring.all
     @geojson = Array.new
-    # @moorings_with = Mooring.where
-    # # @mooring_without =
-
     @moorings.each do |mooring|
-      @geojson << {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [mooring.longitude, mooring.latitude]
-        },
-        properties: {
-          name: mooring.harbor.name,
-          location: 'Long: mooring.longitude, Lat: #{mooring.latitude}',
-          :'marker-color' => '#2BC12B',
-          :'marker-symbol' => 'harbor',
-          :'marker-size' => 'medium'
-        }
-      }
+      color = color_picker
+      @geojson << mooring.to_json
     end
 
     respond_to do |format|
@@ -59,9 +59,12 @@ class MooringsController < ApplicationController
     end
   end
 
+
   private
+
 
   def mooring_params
     params.require(:mooring).permit(:harbor_id, :user_id, :state, :price, :latitude, :longitude)
   end
 end
+
