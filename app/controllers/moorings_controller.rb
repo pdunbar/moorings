@@ -3,9 +3,20 @@ class MooringsController < ApplicationController
 
   def index
     @moorings = Mooring.all
-    respond_to do |format|
-      format.html
-      format.json { render json: @moorings.map{|e| e.to_json}}
+    if params[:start_date]
+      @start_date = Date.parse(params[:start_date]).strftime("%Y%m%d")
+      @end_date = Date.parse(params[:end_date]).strftime("%Y%m%d")
+    end
+    if !params[:start_date] && !params[:end_date]
+      respond_to do |format|
+        format.html
+        format.json { render json: @moorings.map{|e| e.to_json}}
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.json { render json: @moorings.map{|e| e.to_json(params[:start_date], params[:end_date])}}
+      end
     end
   end
 
@@ -29,36 +40,6 @@ class MooringsController < ApplicationController
     @mooring = Mooring.find(params[:id])
     moorings_json(moorings_grey)
   end
-
-
-  def moorings_grey
-    '#550022'
-  end
-
-
-  def moorings_vacant_today(date = Date.today)
-    if mooring.reservations.find_by("check_in < ?  AND check_out > ?", date, date)
-      '#FF0000'
-    else
-      '#2bC12B'
-    end
-  end
-
-
-  def moorings_json(color_picker)
-    @moorings = Mooring.all
-    @geojson = Array.new
-    @moorings.each do |mooring|
-      color = color_picker
-      @geojson << mooring.to_json
-    end
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
-    end
-  end
-
 
   private
 

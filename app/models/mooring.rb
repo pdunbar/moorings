@@ -19,7 +19,7 @@ class Mooring < ActiveRecord::Base
     if is_reserved?(start_date, end_date)
       color = '#FF0000'
     else
-      color = '#0000FF'
+      color = '#33CC33'
     end
 
     {

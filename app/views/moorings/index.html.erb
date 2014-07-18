@@ -28,6 +28,33 @@
 </div>
 <%= button_to('Add a Mooring', new_mooring_path, :method => 'get', :class => 'btn btn-info')  %>
 
+
+<div class="row">
+  <div class="col-xs-8">
+    <%= form_tag moorings_path, :method => 'get' do %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="input-group date">
+            <%= text_field_tag :start_date, params[:start_date], class: "form-control", id: "startdate", placeholder: "Check-in Date" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group date">
+             <%= text_field_tag :end_date, params[:end_date], class: "form-control", id: "enddate", placeholder: "Check-Out Date" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= submit_tag "Search Dates", class: "btn btn-default", id: "search_dates" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
 <div id='map' class='map-large'></div>
 
 <%= content_for :extra_footer do %>
@@ -38,8 +65,14 @@
         longitude: -68.993114,
       };
 
+      var dateRange = {
+        startDate: <%= @start_date %>,
+        endDate: <%= @end_date %>
+      };
+
       mooringMap({
-        centerLocation: centerLocation
+        centerLocation: centerLocation,
+        dateRange: dateRange
       });
     });
   </script>
