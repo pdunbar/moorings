@@ -61,4 +61,5 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 gem 'stamp'
 gem 'gon'
 gem 'mapbox-rails'
+gem 'geokit'
 

@@ -46,13 +46,20 @@
       </div>
 
       <div class="row">
+        <div class="col-md-4">
+          <div class="input-group">
+            <%= text_field_tag :harbor_search, params[:harbor_search], class: "form-control", id: "harborsearch", placeholder: "Search Harbors" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-2">
           <%= submit_tag "Search Dates", class: "btn btn-default", id: "search_dates" %>
         </div>
       </div>
     </div>
   <% end %>
-
 </div>
 
 <div id='map' class='map-large'></div>
@@ -61,8 +68,8 @@
   <script type="text/javascript">
     $(function() {
       var centerLocation = {
-        latitude: 44.424781,
-        longitude: -68.993114,
+        latitude: <%= @harbor_lat %>,
+        longitude: <%= @harbor_lon %>,
       };
 
       var dateRange = {
