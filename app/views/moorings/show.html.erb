@@ -4,22 +4,56 @@
 <h5>Owner Email: <%= @mooring.user.email %></h5>
 <%= button_to('Reserve it Now!', new_mooring_reservation_path(@mooring), :method => 'get', :class => 'btn btn-info')  %>
 
+<div class="row">
+  <div class="col-xs-8">
+    <%= form_tag mooring_path, :method => 'get' do %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="input-group date">
+            <%= text_field_tag :start_date, params[:start_date], class: "form-control", id: "startdate", placeholder: "Check-in Date" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group date">
+             <%= text_field_tag :end_date, params[:end_date], class: "form-control", id: "enddate", placeholder: "Check-Out Date" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= submit_tag "Search Dates", class: "btn btn-default", id: "search_dates" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <div id='map'></div>
 
 <%= content_for :extra_footer do %>
   <script type="text/javascript">
     $(function() {
       var centerLocation = {
+        latitude: <%= @mooring.latitude %>,
         longitude: <%= @mooring.longitude %>,
-        latitude: <%= @mooring.latitude %>
       };
 
-      var zoomLevel = 1;
+      var dateRange = {
+        startDate: <%= @start_date %>,
+        endDate: <%= @end_date %>
+      };
 
       mooringMap({
         centerLocation: centerLocation,
-        zoomLevel: zoomLevel
+        dateRange: dateRange
       });
     });
+
+  // featureLayer.eachLayer(function(layer) {
+  //     var content = '<h2>Belfast Harbor<\/h2>' +
+  //         '<p>Location: ' + layer.feature.properties.location + '<br \/>' +
+  //         'to: ' + layer.feature.properties.to + '<\/p>';
+  //     layer.bindPopup(content);
+  // });
   </script>
 <% end %>

@@ -1,0 +1,36 @@
+<div id='bannercontainer'>
+  <div id='banner'>
+    <div id='searchbanner'>
+
+      <div class="col-xs-12"  id="homesearch">
+        <%= form_tag moorings_path, :method => 'get' do %>
+          <div class="row">
+            <div class="col-md-2" id="homesearch">
+              <div class="input-group">
+                <%= text_field_tag :harbor_search, params[:harbor_search], class: "form-control", id: "harborsearch", placeholder: "Search Harbors" %>
+              </div>
+            </div>
+            <div class="col-md-2" id="homesearch">
+              <div class="input-group date">
+                <%= text_field_tag :start_date, params[:start_date], class: "form-control", id: "startdate", placeholder: "Check-In" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+            </div>
+            <div class="col-md-2" id="homesearch">
+              <div class="input-group date">
+                 <%= text_field_tag :end_date, params[:end_date], class: "form-control", id: "enddate", placeholder: "Check-Out" %><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+              </div>
+            </div>
+            <div class="col-md-2" id="homesearch">
+              <div class="input-group">
+                <%= submit_tag "Search Dates", class: "btn btn-default", id: "search_dates" %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+

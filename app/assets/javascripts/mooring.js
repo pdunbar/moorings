@@ -10,14 +10,13 @@ function mooringMap(options) {
   var featureLayer = L.mapbox.featureLayer()
     .loadURL('/moorings.json' + locationParams + dateParams)
     .addTo(map)
+
+  featureLayer.on('ready', function() {
+    featureLayer.eachLayer(function(layer) {
+      var content = '<h2>' + layer.feature.properties.name + '!<\/h2>' +
+          '<p>From: ' + layer.feature.properties.from + '<br \/>' +
+          'to: ' + layer.feature.properties.to + '<\/p>';
+      layer.bindPopup(content);
+    });
+  });
 };
-
-// featureLayer.eachLayer(function(layer) {
-
-//     // here you call `bindPopup` with a string of HTML you create - the feature
-//     // properties declared above are available under `layer.feature.properties`
-//     var content = '<h2>Belfast Harbor<\/h2>' +
-//         '<p>Location: ' + layer.feature.properties.location + '<br \/>' +
-//         'to: ' + layer.feature.properties.to + '<\/p>';
-//     layer.bindPopup(content);
-// });

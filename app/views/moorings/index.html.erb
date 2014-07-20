@@ -68,9 +68,11 @@
   <script type="text/javascript">
     $(function() {
       var centerLocation = {
-        latitude: <%= @harbor_lat %>,
-        longitude: <%= @harbor_lon %>,
+        latitude: <%= @search.harbor.lat %>,
+        longitude: <%= @search.harbor.lng %>,
       };
+
+      // var centerLocation = <%= @search.center_location %>;
 
       var dateRange = {
         startDate: <%= @start_date %>,

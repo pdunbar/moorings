@@ -3,9 +3,9 @@
 }
 
 #yield {
-  width: 80%;
+ /* width: 80%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
   margin-bottom: 40px;
 }
 
@@ -35,3 +35,49 @@ body {
   height: 600px;
   width: 600px;
 }
+
+#bannercontainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#banner {
+  width: 100%;
+  height: 60vh;
+  min-height: 250px;
+  background-image: url('mooredboats.jpg');
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 0px;
+  position: relative;
+}
+
+#searchbanner {
+  height: 20%;
+  z-index: 10;
+  background-color: black;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+  position: absolute;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#homesearch{
+  padding-left: 0px;
+  padding-right: 0px;
+  display: inline-block;
+  float: none;
+}
+
+#homesearchdiv {
+  vertical-align: middle;
+  text-align: center;
+
+}
+
